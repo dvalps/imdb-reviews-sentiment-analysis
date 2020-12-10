@@ -86,6 +86,15 @@ def predict_fn(input_data, model):
     # TODO: Compute the result of applying the model to the input data. The variable `result` should
     #       be a numpy array which contains a single integer which is either 1 or 0
     
+    """
+    with torch.no_grad():
+        pass
+        
+        ...
+        Do use torch.no_grad() before calling model(data) to avoid model to calculate backpropagation
+        as we are only interested in inference here after putting model in eval mode.
+       """
+    
     result_temp = model(data)
     result = np.round(np.array(result_temp.detach().numpy()), 0)
 
